@@ -1,0 +1,20 @@
+My project is adding support to leafpad for syntax highlighting for C language.
+I started with reading the source code of leafpad and looking around codes of other editors having the feature.
+I have tried to change the actual in leafpad in some ways so that I can get comfortable in reading the source code.
+Although, those changes aren't included in the uploaded source code as they were quite minor.
+This allowed me to browse through the source code quite confidently.
+I then took up main.c as the first file to read in the source code.
+Although not relating to my project, I got a lot of insight in the structure of the source code by reading main.c
+I got to know that leafpad uses glib.
+I had to understand a lot of functions of glib to understand the main.c file.
+I have commented the same in the uploaded source code.
+Also, I understood the functions that were called in main.c but were declared elsewhere.
+This helped me to simultaneously understand a few other files of the source code.
+I also looked up vim editor's source code for an example of syntax highlighting.
+This is what I have done in my mini-project uoto now.
+All this enabled me to get a proper direction for completing the project.
+At this point in my project I know where to add options in menubar for enabling
+syntax highlighting and other related stuff.
+Further, I would have to think about how I am going to implement syntax highlighting
+which would encompass the second stage of my mini-project.
+Also now, I have a vague knowledge about glib and its many functions which would help me in writing my code.
