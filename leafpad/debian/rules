@@ -1,0 +1,43 @@
+#!/usr/bin/make -f
+
+PACKAGE = leafpad
+DESKTOP_KEYWORDS = Keywords=editor
+
+export DEB_BUILD_MAINT_OPTIONS	= hardening=+all
+export DEB_CFLAGS_MAINT_APPEND	= -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+man:
+	$(MAKE) -C debian -f pod2man.mk PACKAGE=$(PACKAGE) makeman
+
+override_dh_auto_configure:
+	cp config.sub config.sub.bak
+	cp config.guess config.guess.bak
+	cp -vf /usr/share/misc/config.sub /usr/share/misc/config.guess .
+	dh_auto_configure
+	# Restore original files. The will keep version control directory clean
+	mv config.sub.bak config.sub
+	mv config.guess.bak config.guess
+
+override_dh_auto_test:
+	# The tests would consider Quilt .pc/ directory as
+	# a part of translation POTFILES. Dynamically exclude all.
+
+	( find .pc/ -type f > po/POTFILES.skip )
+	dh_auto_test
+	rm -f po/POTFILES.skip
+
+override_dh_installman: man
+	dh_installman
+	# Remove encofing, UTF is the default.
+	sed --in-place \
+	    -e '/Encoding/d' \
+	    -e '3s/^/$(DESKTOP_KEYWORDS)\n/' \
+	    debian/$(PACKAGE)/usr/share/applications/*.desktop
+
+%:
+	dh $@
+
+.PHONY: man
+
+# End of file

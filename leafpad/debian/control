@@ -1,0 +1,18 @@
+Source: leafpad
+Section: editors
+Priority: optional
+Maintainer: Jari Aalto <jari.aalto@cante.net>
+Build-Depends: debhelper (>= 9), pkg-config, libgtk2.0-dev (>= 2.10), gnome-pkg-tools, intltool, autotools-dev
+Standards-Version: 3.9.4
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/leafpad.git
+Vcs-Git: git://anonscm.debian.org/collab-maint/leafpad.git
+Homepage: http://tarot.freeshell.org/leafpad/
+
+Package: leafpad
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: evince-gtk
+Description: GTK+ based simple text editor
+ Leafpad is a simple GTK+ based text editor, the user interface is
+ similar to Notepad. It aims to be lighter than GEdit and KWrite,
+ and to be as useful as them.
